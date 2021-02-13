@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class CollectionActivity extends AppCompatActivity {
+public class WishlistActivity extends AppCompatActivity {
     final int ATARI2600 = 0;
     final int ATARI5200 = 1;
     final int ATARI7800 = 2;
@@ -73,15 +73,14 @@ public class CollectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.collectionpage);
-        getSupportActionBar().setTitle("My Collection");
 
         Intent intent = getIntent();
         //retrieve the console that was clicked
         String console = intent.getStringExtra("console");
-        getSupportActionBar().setTitle("My " + console + " Collection");
+        getSupportActionBar().setTitle(console + " Wishlist");
 
         collectionListView = findViewById(R.id.collectionListView);
-        CollectionActivity.MyAdapter adapter = new MyAdapter(this, gameTitle, gameDesc, boxArt);
+        WishlistActivity.MyAdapter adapter = new MyAdapter(this, gameTitle, gameDesc, boxArt);
         collectionListView.setAdapter(adapter);
     }
 

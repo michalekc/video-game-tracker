@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     ListView listView;
@@ -48,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.mainscreen);
+        getSupportActionBar().hide();
 
         listView = findViewById(R.id.listView);
         MyAdapter adapter = new MyAdapter(this, mTitle, mDesc, images);
@@ -56,16 +56,15 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("Main Activity pos: " + position);
-                openCollectionScreen(position);
+                openChoiceScreen(position);
             }
         });
     }
 
-    public void openCollectionScreen(int pos) {
-        Intent intent = new Intent(this, CollectionActivity.class);
+    public void openChoiceScreen(int pos) {
+        Intent intent = new Intent(this, ChoiceActivity.class);
         //sends the console that was clicked
-        intent.putExtra("console", pos);
+        intent.putExtra("console", mTitle[pos]);
         startActivity(intent);
     }
 
